@@ -87,6 +87,24 @@ export interface UserPermission {
 
 export type TabKey = 'basic' | 'contract' | 'change' | 'attachment';
 
+export type WorkStatus = '在职' | '试用期' | '离职' | '停薪留职';
+export type ViewMode = 'table' | 'card';
+export type SortField = 'hireDate' | 'name' | 'department';
+export type SortOrder = 'asc' | 'desc';
+
+export interface EmployeeListItem {
+  employeeId: string;
+  name: string;
+  avatar: string;
+  department: string;
+  position: string;
+  level: string;
+  status: WorkStatus;
+  hireDate: string;
+  supervisor: string;
+  hasExpiringContract: boolean;
+}
+
 export interface ToastMessage {
   id: string;
   type: 'success' | 'error' | 'warning' | 'info';
