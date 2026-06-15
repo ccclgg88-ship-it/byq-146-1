@@ -6,12 +6,15 @@ import { ContractFormModal } from './ContractFormModal';
 import { useEmployeeStore } from '@/store/useEmployeeStore';
 import type { ContractRecord } from '@/types/employee';
 
+const EMPTY_CONTRACTS: ContractRecord[] = [];
+
 export function ContractTab() {
-  const { profile, isEditMode } = useEmployeeStore();
+  const profileContracts = useEmployeeStore((s) => s.profile?.contracts);
+  const isEditMode = useEmployeeStore((s) => s.isEditMode);
+  const contracts = profileContracts ?? EMPTY_CONTRACTS;
+
   const [detailContract, setDetailContract] = useState<ContractRecord | null>(null);
   const [showFormModal, setShowFormModal] = useState(false);
-
-  const contracts = profile?.contracts ?? [];
 
   return (
     <div className="w-full">

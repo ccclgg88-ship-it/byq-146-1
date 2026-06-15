@@ -22,7 +22,8 @@ const FILTER_TABS: Array<{ key: EventType | 'all'; label: string }[]> = [
 const ALL_FILTERS: Array<{ key: EventType | 'all'; label: string }> = FILTER_TABS[0];
 
 export function EventFilter({ eventCounts }: EventFilterProps) {
-  const { activeEventFilter, setActiveEventFilter } = useEmployeeStore();
+  const activeEventFilter = useEmployeeStore((s) => s.activeEventFilter);
+  const setActiveEventFilter = useEmployeeStore((s) => s.setActiveEventFilter);
 
   return (
     <div className="flex flex-wrap gap-2">

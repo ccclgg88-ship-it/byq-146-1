@@ -29,7 +29,8 @@ interface FormErrors {
 }
 
 export function ContractFormModal({ onClose }: ContractFormModalProps) {
-  const { addContract, profile } = useEmployeeStore();
+  const addContract = useEmployeeStore((s) => s.addContract);
+  const profile = useEmployeeStore((s) => s.profile);
   const [form, setForm] = useState<FormState>({
     contractNo: `HT-${todayStr().replace(/-/g, '')}-${String((profile?.contracts.length ?? 0) + 1).padStart(3, '0')}`,
     type: '劳动合同',

@@ -10,10 +10,13 @@ import { FileUploader } from './FileUploader';
 import { useToast } from '@/hooks/useToast';
 import { ConfirmDialog } from '@/components/common/ConfirmDialog';
 
+const EMPTY_ATTACHMENTS: AttachmentFile[] = [];
+
 export function AttachmentTab() {
-  const attachments = useEmployeeStore((s) => s.profile?.attachments ?? []);
+  const profileAttachments = useEmployeeStore((s) => s.profile?.attachments);
   const isEditMode = useEmployeeStore((s) => s.isEditMode);
   const deleteAttachment = useEmployeeStore((s) => s.deleteAttachment);
+  const attachments = profileAttachments ?? EMPTY_ATTACHMENTS;
 
   const { success, warning } = useToast();
 

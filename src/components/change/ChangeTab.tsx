@@ -4,9 +4,12 @@ import { EventTimeline } from './EventTimeline';
 import { useEmployeeStore } from '@/store/useEmployeeStore';
 import type { ChangeRecord } from '@/types/employee';
 
+const EMPTY_CHANGES: ChangeRecord[] = [];
+
 export function ChangeTab() {
-  const { profile, activeEventFilter } = useEmployeeStore();
-  const allChanges = profile?.changes ?? [];
+  const profileChanges = useEmployeeStore((s) => s.profile?.changes);
+  const activeEventFilter = useEmployeeStore((s) => s.activeEventFilter);
+  const allChanges = profileChanges ?? EMPTY_CHANGES;
 
   const filteredChanges = useMemo(() => {
     const sorted = [...allChanges].sort(
